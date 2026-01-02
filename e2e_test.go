@@ -57,9 +57,10 @@ func TestE2ESearchAndDetails(t *testing.T) {
 	}
 
 	details, err := client.DetailsWithOptions(ctx, DetailsRequest{
-		PlaceID:  placeID,
-		Language: language,
-		Region:   region,
+		PlaceID:        placeID,
+		Language:       language,
+		Region:         region,
+		IncludeReviews: true,
 	})
 	if err != nil {
 		t.Fatalf("details error: %v", err)

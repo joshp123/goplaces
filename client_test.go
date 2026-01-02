@@ -245,6 +245,18 @@ func TestDetailsWithReviews(t *testing.T) {
 	}
 }
 
+func TestDetailsFieldMaskForRequest(t *testing.T) {
+	req := DetailsRequest{}
+	if got := detailsFieldMaskForRequest(req); got != detailsFieldMaskBase {
+		t.Fatalf("unexpected field mask: %s", got)
+	}
+	req.IncludeReviews = true
+	got := detailsFieldMaskForRequest(req)
+	if !strings.Contains(got, "reviews") {
+		t.Fatalf("expected reviews in field mask: %s", got)
+	}
+}
+
 func TestResolveSuccess(t *testing.T) {
 	var gotRequest map[string]any
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
