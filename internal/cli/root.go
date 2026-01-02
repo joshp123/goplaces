@@ -9,10 +9,11 @@ type Root struct {
 	Global       GlobalOptions   `embed:""`
 	Autocomplete AutocompleteCmd `cmd:"" help:"Autocomplete places and queries."`
 	Nearby       NearbyCmd       `cmd:"" help:"Search nearby places by location."`
-	Search       SearchCmd       `cmd:"" help:"Search places by text query."`
-	Details      DetailsCmd      `cmd:"" help:"Fetch place details by place ID."`
-	Photo        PhotoCmd        `cmd:"" help:"Fetch a photo URL by photo name."`
-	Resolve      ResolveCmd      `cmd:"" help:"Resolve a location string to candidate places."`
+	Search       SearchCmd        `cmd:"" help:"Search places by text query."`
+	Route        RouteCmd         `cmd:"" help:"Search places along a route."`
+	Details      DetailsCmd       `cmd:"" help:"Fetch place details by place ID."`
+	Photo        PhotoCmd         `cmd:"" help:"Fetch a photo URL by photo name."`
+	Resolve      ResolveCmd       `cmd:"" help:"Resolve a location string to candidate places."`
 }
 
 // GlobalOptions are flags shared by all commands.
