@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 - 2026-01-23
+
+- CLI: accept long flags with `--flag=value` (same behavior as space-separated).
+- Docs: note `--flag=value` support for long flags.
+
 ## 0.2.0 - 2026-01-02
 
 - Autocomplete suggestions for places and queries (client + CLI).
