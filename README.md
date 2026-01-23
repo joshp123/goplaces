@@ -19,6 +19,8 @@ Modern Go client + CLI for the Google Places API (New). Fast for humans, tidy fo
 
 ## Install / Run
 
+Latest release: v0.2.1 (2026-01-23).
+
 - Homebrew: `brew install steipete/tap/goplaces`
 - Go: `go install github.com/steipete/goplaces/cmd/goplaces@latest`
 - Source: `make goplaces`
@@ -69,6 +71,8 @@ Optional overrides:
 > **Note**: The Places API has usage costs. Check [pricing](https://developers.google.com/maps/documentation/places/web-service/usage-and-billing) and set budget alerts!
 
 ## CLI
+
+Long flags accept `--flag value` or `--flag=value` (examples use space).
 
 ```text
 goplaces [--api-key=KEY] [--base-url=URL] [--routes-base-url=URL] [--timeout=10s] [--json] [--no-color] [--verbose]
