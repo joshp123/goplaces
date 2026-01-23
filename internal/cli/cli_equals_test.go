@@ -40,7 +40,7 @@ func TestRunSearchWithEqualsFlags(t *testing.T) {
 
 func TestRunNearbyWithEqualsFlags(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/places:searchNearby" {
+		if r.URL.Path != placesNearbyPath {
 			t.Fatalf("unexpected path: %s", r.URL.Path)
 		}
 		_, _ = w.Write([]byte(`{"places": [{"id": "abc"}]}`))
@@ -77,7 +77,7 @@ func TestRunNearbyWithEqualsFlags(t *testing.T) {
 func TestRunRouteWithEqualsFlags(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case "/directions/v2:computeRoutes":
+		case routesComputePath:
 			_, _ = w.Write([]byte("{\"routes\":[{\"polyline\":{\"encodedPolyline\":\"_p~iF~ps|U_ulLnnqC_mqNvxq`@\"}}]}"))
 		case placesSearchPath:
 			_, _ = w.Write([]byte(`{"places":[{"id":"abc","displayName":{"text":"Cafe"}}]}`))

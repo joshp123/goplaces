@@ -12,7 +12,11 @@ import (
 	"github.com/steipete/goplaces"
 )
 
-const placesSearchPath = "/places:searchText"
+const (
+	placesSearchPath  = "/places:searchText"
+	placesNearbyPath  = "/places:searchNearby"
+	routesComputePath = "/directions/v2:computeRoutes"
+)
 
 func TestRunSearchJSON(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -180,7 +184,7 @@ func TestRunAutocompleteHuman(t *testing.T) {
 
 func TestRunNearbyJSON(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/places:searchNearby" {
+		if r.URL.Path != placesNearbyPath {
 			t.Fatalf("unexpected path: %s", r.URL.Path)
 		}
 		_, _ = w.Write([]byte(`{"places": [{"id": "abc"}]}`))
@@ -241,7 +245,7 @@ func TestRunNearbyHuman(t *testing.T) {
 func TestRunRouteJSON(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case "/directions/v2:computeRoutes":
+		case routesComputePath:
 			_, _ = w.Write([]byte("{\"routes\":[{\"polyline\":{\"encodedPolyline\":\"_p~iF~ps|U_ulLnnqC_mqNvxq`@\"}}]}"))
 		case placesSearchPath:
 			_, _ = w.Write([]byte(`{"places":[{"id":"abc","displayName":{"text":"Cafe"}}]}`))
@@ -276,7 +280,7 @@ func TestRunRouteJSON(t *testing.T) {
 func TestRunRouteHuman(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case "/directions/v2:computeRoutes":
+		case routesComputePath:
 			_, _ = w.Write([]byte("{\"routes\":[{\"polyline\":{\"encodedPolyline\":\"_p~iF~ps|U_ulLnnqC_mqNvxq`@\"}}]}"))
 		case placesSearchPath:
 			_, _ = w.Write([]byte(`{"places":[{"id":"abc","displayName":{"text":"Cafe"}}]}`))
@@ -673,7 +677,7 @@ func TestRunSearchJSONWithNextPageToken(t *testing.T) {
 
 func TestRunNearbyJSONWithNextPageToken(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/places:searchNearby" {
+		if r.URL.Path != placesNearbyPath {
 			t.Fatalf("unexpected path: %s", r.URL.Path)
 		}
 		_, _ = w.Write([]byte(`{"places": [{"id": "abc"}], "nextPageToken": "nearby-token"}`))
