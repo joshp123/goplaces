@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2 - Unreleased
+
+- (TBD)
+
 ## 0.2.1 - 2026-01-23
 
 - CLI: accept long flags with `--flag=value` (same behavior as space-separated).
