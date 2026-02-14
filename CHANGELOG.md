@@ -2,7 +2,7 @@
 
 ## 0.2.2 - Unreleased
 
-- (TBD)
+- Add user rating counts (`user_rating_count`) in search/nearby/details and CLI output (`Rating: 4.5 (532)`). (#3) - thanks @aligurelli
 
 ## 0.2.1 - 2026-01-23
 
