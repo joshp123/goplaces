@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	detailsFieldMaskBase   = "id,displayName,formattedAddress,location,rating,priceLevel,types,regularOpeningHours,currentOpeningHours,nationalPhoneNumber,websiteUri"
+	detailsFieldMaskBase   = "id,displayName,formattedAddress,location,rating,userRatingCount,priceLevel,types,regularOpeningHours,currentOpeningHours,nationalPhoneNumber,websiteUri"
 	detailsFieldMaskReview = "reviews"
 	detailsFieldMaskPhotos = "photos"
 )
@@ -61,18 +61,19 @@ func detailsFieldMaskForRequest(req DetailsRequest) string {
 
 func mapPlaceDetails(place placeItem) PlaceDetails {
 	return PlaceDetails{
-		PlaceID:    place.ID,
-		Name:       displayName(place.DisplayName),
-		Address:    place.FormattedAddress,
-		Location:   mapLatLng(place.Location),
-		Rating:     place.Rating,
-		PriceLevel: mapPriceLevel(place.PriceLevel),
-		Types:      place.Types,
-		Phone:      place.NationalPhoneNumber,
-		Website:    place.WebsiteURI,
-		Hours:      weekdayDescriptions(place.RegularOpeningHours),
-		OpenNow:    openNow(place.CurrentOpeningHours),
-		Reviews:    mapReviews(place.Reviews),
-		Photos:     mapPhotos(place.Photos),
+		PlaceID:         place.ID,
+		Name:            displayName(place.DisplayName),
+		Address:         place.FormattedAddress,
+		Location:        mapLatLng(place.Location),
+		Rating:          place.Rating,
+		UserRatingCount: place.UserRatingCount,
+		PriceLevel:      mapPriceLevel(place.PriceLevel),
+		Types:           place.Types,
+		Phone:           place.NationalPhoneNumber,
+		Website:         place.WebsiteURI,
+		Hours:           weekdayDescriptions(place.RegularOpeningHours),
+		OpenNow:         openNow(place.CurrentOpeningHours),
+		Reviews:         mapReviews(place.Reviews),
+		Photos:          mapPhotos(place.Photos),
 	}
 }
